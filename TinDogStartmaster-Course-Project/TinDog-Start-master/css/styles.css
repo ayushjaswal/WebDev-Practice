@@ -1,1 +1,53 @@
-/* asdfkjhasd */
+/* Google Fonts  */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,700&display=swap');
+
+/* font-family: 'Montserrat', sans-serif;
+font-family: 'Ubuntu', sans-serif; */
+body{
+    font-family: 'Montserrat' !important;
+}
+h1{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900 !important; 
+    font-size: 3.5rem !important;
+    line-height: 1.5;
+     
+}
+.container-fluid{
+    padding: 3% 15% !important;
+}
+#title{
+    background-color: #ff4c68;
+    color: #fff;
+}
+
+/* Navigation Bar  */
+.navbar{
+    padding-bottom: 4.5rem !important;
+}
+
+.navbar-brand{
+    font-family:'Ubuntu', sans-serif; 
+    font-size: 2.5rem !important;
+}
+
+.nav-item{
+    padding: 0 18px;
+}
+
+.nav-link{
+    font-size: 1.2rem !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: light !important;
+}
+
+/* Download Button */
+.download-button{
+    margin: 5% 3% 5% 0;
+}
+
+/* Title Image  */
+.title-image{
+    width: 60% ;
+    transform: rotate(25deg) ;
+}
