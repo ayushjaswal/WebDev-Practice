@@ -32,7 +32,7 @@ p {
 }
 
 .container-fluid {
-    padding: 3% 15% !important;
+    padding: 3% 15% 7% !important;
 }
 
 #title {
@@ -67,13 +67,18 @@ p {
 
 /* Title Image  */
 .title-image {
-    width: 60%;
+    width: 19%;
     transform: rotate(25deg);
+    position: absolute;
+    right: 25%;
 }
 
 /* Feature */
 #features {
     padding: 7% 15%;
+    background-color: #fff;
+    position: relative;
+    /* z-index: 1; */
 }
 
 .feature-box {
@@ -129,4 +134,39 @@ p {
 }
 .pricing-columns{
     padding: 3% 2% !important;
+}
+
+@media (max-width: 1028px) {
+    #title{
+        text-align: center;
+    }
+    .title-image{
+        position: static;
+        transform: rotate(0);
+        width: 60%;
+    }
+}
+
+/* CTA  */
+
+#cta{
+    background-color: #ff4c68;
+    color: #fff;
+    text-align: center;
+    
+    font-family: 'Montserrat', sans-serif;
+}
+#cta h3{
+    font-size: 3.5rem;
+    padding: 10% 15% 0 15%;
+    line-height: 1.5;
+}
+
+/* FOOTER  */
+#footer{
+    padding: 7% 15%;
+    text-align: center;
+}
+.social-icon{
+    margin: 20px 10px;
 }
