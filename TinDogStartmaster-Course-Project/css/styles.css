@@ -5,26 +5,25 @@
 font-family: 'Ubuntu', sans-serif; */
 body {
     font-family: 'Montserrat' !important;
+    text-align: center !important;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800 !important;
+}
+
+/* HEADINGS */
+.big-heading {
     font-family: 'Montserrat', sans-serif;
     font-weight: 900 !important;
     font-size: 3.5rem !important;
     line-height: 1.5;
-
-}
-
-h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800 !important;
-    font-size: 3rem !important;
-    line-height: 1.5;
-}
-
-h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800 !important;
 }
 
 p {
@@ -38,6 +37,7 @@ p {
 #title {
     background-color: #ff4c68;
     color: #fff;
+    text-align: left;
 }
 
 /* Navigation Bar  */
@@ -81,8 +81,9 @@ p {
     /* z-index: 1; */
 }
 
-.feature-box {
-    text-align: center;
+
+.feature-title {
+    font-size: 1.5rem !important;
 }
 
 /* Icont  */
@@ -99,7 +100,6 @@ p {
 /* Testimonial */
 #testimonials {
 
-    text-align: center;
     background-color: #ef8172;
     color: #fff;
 }
@@ -110,6 +110,11 @@ p {
     margin: 20px;
 }
 
+.testimonial-text {
+    font-size: 3rem !important;
+    line-height: 1.5;
+}
+
 .carousel-item {
     padding: 7% 15%;
 }
@@ -117,7 +122,6 @@ p {
 /* PRESS  */
 #press {
     background-color: #ef8172;
-    text-align: center;
     padding: 3%;
 }
 
@@ -128,19 +132,25 @@ p {
 
 /* PRICING */
 
-#pricing{
+#pricing {
     padding: 100px;
-    text-align: center;
 }
-.pricing-columns{
+
+.pricing-columns {
     padding: 3% 2% !important;
 }
 
+.price-text {
+    font-size: 3rem !important;
+    line-height: 1.5;
+}
+
 @media (max-width: 1028px) {
-    #title{
+    #title {
         text-align: center;
     }
-    .title-image{
+
+    .title-image {
         position: static;
         transform: rotate(0);
         width: 60%;
@@ -149,24 +159,23 @@ p {
 
 /* CTA  */
 
-#cta{
+#cta {
     background-color: #ff4c68;
     color: #fff;
     text-align: center;
-    
     font-family: 'Montserrat', sans-serif;
 }
-#cta h3{
-    font-size: 3.5rem;
+
+#cta h3 {
     padding: 10% 15% 0 15%;
-    line-height: 1.5;
 }
 
 /* FOOTER  */
-#footer{
+#footer {
     padding: 7% 15%;
-    text-align: center;
+
 }
-.social-icon{
+
+.social-icon {
     margin: 20px 10px;
 }
