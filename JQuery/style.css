@@ -1,0 +1,25 @@
+body{
+    background-color: pink;
+}
+button{
+    background-color: wheat;
+    border: 1px solid rgba(0, 0, 0, 0.311);
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-weight: 400;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 200ms ease-in-out;
+}
+button:hover{
+    background-color: rgb(233, 210, 167);
+}
+.hoster{
+    color: brown;
+}
+h1{
+    transition: 200ms ease-in-out;
+}
+h1:hover{
+    cursor: pointer;
+}
