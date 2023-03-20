@@ -1,23 +1,20 @@
+var userColorPattern = [];
 var gamePattern = [];
 var buttonColor = ["red", "blue", "green", "yellow"];
-var randomChosenColor;
-var userChosenColor;
-var userColorPattern = [];
-var i = 0;
-var level = 1;
 
 
+var level = 1;  
 function nextSequence() {
-    var randomNumber = Math.floor(Math.random()*3) + 1;
-    randomChosenColor = buttonColor[randomNumber];
     $("h1").text("Level " + level);
-    return randomChosenColor;
+    var randomChosenColorNS;
+    var randomNumber = Math.floor(Math.random() * 4);
+    randomChosenColorNS = buttonColor[randomNumber];
+    level++;
+    return randomChosenColorNS;
 }
-gamePattern.push(nextSequence());
 
-var className = "#" + randomChosenColor;
 
-function selected(className){
+function selected(className) {
     switch (className) {
         case '#blue':
             var blue = new Audio("sounds/blue.mp3");
@@ -39,43 +36,53 @@ function selected(className){
             break;
     }
 }
-function userSelected(idName){
+
+function gameSelected(className, randomChosenColor) {
+    $(className).fadeOut(100).fadeIn(100);
+    selected(className);
+    gamePattern.push(randomChosenColor);
+}
+
+function userSelected(idName, userColorPattern) {
     selected("#" + idName);
     userColorPattern.push(idName);
-
 }
-function animatePress(curColor){
+
+function animatePress(curColor) {
     $("#" + curColor).addClass("pressed")
-    setTimeout(function(){
+    setTimeout(function () {
         $("#" + curColor).removeClass("pressed");
-    },100);
+    }, 100);
 }
 
-$(document).on("keydown", function(){
-    
-    gameEngine(nextSequence())
+$(document).on("keydown", function () {
+    gameEngine(userColorPattern);
 })
-function checkAnswer(){
-    for(var i = 0; i < gamePattern.length; i++){
-        if(userColorPattern[i] != gamePattern[i]){
-            console.log(userColorPattern[i])
-            console.log(gamePattern[i])
-            console.log("Wrong");
+function checkAnswer(userColorPattern, k) {
+    for(var i = 0; i < k; i++){
+        if (userColorPattern[i] != gamePattern[i]) {
+            return false;
         }
-    }
+    return true;}
 }
 
-function gameEngine(randomChosenColor){
-    $("#" + randomChosenColor).fadeOut(100).fadeIn(100);
-    selected(randomChosenColor);
-    $(".btn").click(function(){
+function gameEngine(userColorPattern) {
+    var userChosenColor;
+    var randomChosenColor = nextSequence();
+    var className = "#" + randomChosenColor;
+    gameSelected(className, randomChosenColor);
+    $(".btn").click(function () {
+        var k = 0
         userChosenColor = this.id;
-        userSelected(userChosenColor);
+        userSelected(userChosenColor, userColorPattern);
         animatePress(userChosenColor);
-        checkAnswer();
+        if(checkAnswer(userColorPattern, k)){
+            console.log("Sahi h ye");
+        }
+        else{
+            console.log("Abe mc")
+        }
     });
-    console.log("Game Pattern") ;
-    console.log(gamePattern);
     console.log("User Color Pattern");
     console.log(userColorPattern);
 }
