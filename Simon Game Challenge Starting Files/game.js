@@ -1,51 +1,47 @@
 var userColorPattern = [];
 var gamePattern = [];
 var buttonColor = ["red", "blue", "green", "yellow"];
+var started = false;
+var level = 0;  
 
+$(document).on("keydown", function () {
+    if(!started){
+        nextSequence();
+        started = true;
+    }
+});
 
-var level = 1;  
+$(".btn").click(function(){
+    var userChosenColor = $(this).attr("id");
+    userColorPattern.push(userChosenColor);
+
+    selected(userChosenColor);
+    animatePress(userChosenColor);
+    checkAnswer(userColorPattern.length-1);
+})
+
 function nextSequence() {
-    $("h1").text("Level " + level);
-    var randomChosenColorNS;
-    var randomNumber = Math.floor(Math.random() * 4);
-    randomChosenColorNS = buttonColor[randomNumber];
+    userColorPattern = [];
+
     level++;
-    return randomChosenColorNS;
+
+    $("#level-title").text("Level " + level);
+
+    var randomNumber = Math.floor(Math.random() * 4);
+
+    var randomChosenColorNS = buttonColor[randomNumber];
+
+    gamePattern.push(randomChosenColorNS);
+
+    $("#" + randomChosenColorNS).fadeOut(100).fadeIn(100);
+
+    selected(randomChosenColorNS);
 }
 
 
 function selected(className) {
-    switch (className) {
-        case '#blue':
-            var blue = new Audio("sounds/blue.mp3");
-            blue.play();
-            break;
-        case '#green':
-            var green = new Audio("sounds/green.mp3");
-            green.play();
-            break;
-        case '#red':
-            var red = new Audio("sounds/red.mp3");
-            red.play();
-            break;
-        case '#yellow':
-            var yellow = new Audio("sounds/yellow.mp3");
-            yellow.play();
-            break;
-        default:
-            break;
-    }
-}
-
-function gameSelected(className, randomChosenColor) {
-    $(className).fadeOut(100).fadeIn(100);
-    selected(className);
-    gamePattern.push(randomChosenColor);
-}
-
-function userSelected(idName, userColorPattern) {
-    selected("#" + idName);
-    userColorPattern.push(idName);
+    var audio = new Audio("sounds/" + className + ".mp3");
+    audio.play();
 }
 
 function animatePress(curColor) {
@@ -54,36 +50,35 @@ function animatePress(curColor) {
         $("#" + curColor).removeClass("pressed");
     }, 100);
 }
-
-$(document).on("keydown", function () {
-    gameEngine(userColorPattern);
-})
-function checkAnswer(userColorPattern, k) {
-    for(var i = 0; i < k; i++){
-        if (userColorPattern[i] != gamePattern[i]) {
-            return false;
-        }
-    return true;}
+function startOver(){
+    started = false;
+    gamePattern = [];
+    level = 0;
 }
-
-function gameEngine(userColorPattern) {
-    var userChosenColor;
-    var randomChosenColor = nextSequence();
-    var className = "#" + randomChosenColor;
-    gameSelected(className, randomChosenColor);
-    $(".btn").click(function () {
-        var k = 0
-        userChosenColor = this.id;
-        userSelected(userChosenColor, userColorPattern);
-        animatePress(userChosenColor);
-        if(checkAnswer(userColorPattern, k)){
-            console.log("Sahi h ye");
+function checkAnswer(currentLevel) {
+    if(userColorPattern[currentLevel] == gamePattern[currentLevel]){
+        console.log("Ho gaya bc");
+        if(userColorPattern.length == gamePattern.length){
+            setTimeout(function(){
+                nextSequence();
+            }, 1000);
         }
-        else{
-            console.log("Abe mc")
-        }
-    });
-    console.log("User Color Pattern");
-    console.log(userColorPattern);
+    } 
+    else{
+        $("#level-title").html("Your score is: " + level + ". <br>Press Any key to restart");
+        selected("wrong");
+        $("body").css("background-color", "red");
+        setTimeout(function () {
+            $("body").css("background-color", "#011F3F");
+        }, 200);
+        startOver();
+        $(document).on("keydown", function () {
+            if(!started){
+                setTimeout(function(){
+                    nextSequence();
+                }, 1000);
+                started = true;
+            }
+        });
+    } 
 }
-// gameEngine(nextSequence())
