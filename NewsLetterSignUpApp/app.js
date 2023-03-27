@@ -2,9 +2,10 @@ const express = require("express");
 const https = require('https');
 const bodyParser = require("body-parser");
 const client = require("@mailchimp/mailchimp_marketing");
+const { readFile } = require("fs");
 
 client.setConfig({
-    apiKey: "45044816d99b4c720d82ea4c75e4eb07-us10",
+    apiKey: readFile("filesreq.txt"),
     server: "us10",
   });
 
@@ -35,7 +36,8 @@ app.post("/", function(req, res){
             }
         };
     const run = async () => {
-        const response = await client.lists.addListMember("9b83b68946", data);
+        var audid = readFile("audId.txt")
+        const response = await client.lists.addListMember(audid, data);
         console.log(response);
         if(response.status == "subscribed"){
             res.sendFile(__dirname + "/success.html");
@@ -51,6 +53,4 @@ app.listen(process.env.PORT || 3000, function(){
     console.log("Server on!");
 })
 
-// 45044816d99b4c720d82ea4c75e4eb07-us10
-
-// audience id - 9b83b68946
+// audience id - 
