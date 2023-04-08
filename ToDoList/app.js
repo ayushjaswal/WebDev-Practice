@@ -92,7 +92,7 @@ app.post("/delete", function(req, res){
     }
     else{
         List.findOneAndUpdate({name: listName}, {$pull: {items: {_id: rescheck}}}).then((docs)=>{
-            console.log("success");
+            console.log("Deleted");
         })
         res.redirect("/"+listName);
     }
