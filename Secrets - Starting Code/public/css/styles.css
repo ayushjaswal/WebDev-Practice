@@ -1,0 +1,20 @@
+
+body {
+  background-color: #E8ECEF;
+}
+*::selection{
+  background-color: rgba(128, 0, 128, 0.412);
+  
+}
+
+.centered {
+    padding-top: 200px;
+    text-align: center;
+}
+
+.secret-text {
+  text-align: center;
+  font-size: 2rem;
+  color: #fff;
+  background-color: #000;
+}
